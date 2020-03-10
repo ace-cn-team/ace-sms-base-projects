@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ace.sms.base.api.client.autoconfigure.EnableFeignClientAutoConfigure

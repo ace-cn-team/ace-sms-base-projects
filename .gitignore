@@ -1,0 +1,7 @@
+/ace-sms-base-api/*.iml
+/ace-sms-base-api-client-autoconfigure/*.iml
+/ace-sms-base-api-web/*.iml
+/ace-sms-define/*.iml
+/ace-sms-logic-api/*.iml
+/ace-sms-logic-api-web/*.iml
+/*.iml
