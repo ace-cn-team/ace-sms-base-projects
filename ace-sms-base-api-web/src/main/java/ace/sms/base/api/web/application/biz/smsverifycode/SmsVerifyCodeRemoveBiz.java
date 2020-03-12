@@ -4,7 +4,6 @@ import ace.fw.model.response.GenericResponseExt;
 import ace.fw.util.GenericResponseExtUtils;
 import ace.sms.base.api.web.application.biz.util.SmsVerifyCodeUtils;
 import ace.sms.define.base.model.VerifyCodeId;
-import ace.sms.define.base.model.request.CheckEqualRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;

@@ -24,14 +24,14 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckEqualRequest {
+public class CheckRequest {
     @ApiModelProperty(value = "验证码Id", required = true)
     @NotNull
     @Valid
     private VerifyCodeId verifyCodeId;
     @ApiModelProperty(value = "验证码", required = true)
     @NotBlank
-    @Length(min = 1, max = 8)
+    @Length(min = 4, max = 8)
     private String verifyCode;
 
 }

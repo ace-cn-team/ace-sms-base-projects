@@ -3,7 +3,7 @@ package ace.sms.base.api.service;
 import ace.fw.model.response.GenericResponseExt;
 import ace.sms.define.base.constant.SmsConstants;
 import ace.sms.define.base.model.VerifyCodeId;
-import ace.sms.define.base.model.request.CheckEqualRequest;
+import ace.sms.define.base.model.request.CheckRequest;
 import ace.sms.define.base.model.request.GetVerifyCodeRequest;
 import ace.sms.define.base.model.request.SendVerifyCodeRequest;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +37,7 @@ public interface SmsVerifyCodeBaseService {
      */
     @ApiOperation(value = "发送验证码")
     @RequestMapping(path = "/send", method = RequestMethod.POST)
-    GenericResponseExt<Boolean> send(@Valid @RequestBody SendVerifyCodeRequest request);
+    GenericResponseExt<String> send(@Valid @RequestBody SendVerifyCodeRequest request);
 
 
     /**
@@ -58,8 +58,8 @@ public interface SmsVerifyCodeBaseService {
      * @return
      */
     @ApiOperation(value = "验证码是否相等")
-    @RequestMapping(path = "/check-equal", method = RequestMethod.POST)
-    GenericResponseExt<Boolean> checkEqual(@Valid @RequestBody CheckEqualRequest request);
+    @RequestMapping(path = "/check", method = RequestMethod.POST)
+    GenericResponseExt<Boolean> check(@Valid @RequestBody CheckRequest request);
 
     /**
      * 删除验证码

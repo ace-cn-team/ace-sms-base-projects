@@ -13,9 +13,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * @author Caspar
@@ -40,13 +38,12 @@ public class SendVerifyCodeRequest {
     private String bizName;
 
     @ApiModelProperty(value = "验证码长度，默认：4", required = false)
-    @NotNull
-    @Size(min = 4, max = 8)
-    private Integer verifyCodeCount;
+    @Min(value = 4)
+    @Max(value = 8)
+    private Integer verifyCodeCount = 4;
 
-    @ApiModelProperty(value = "验证码类型," + SmsConstants.SMS_VERIFY_CODE_TYPE_REMARK, required = true)
-    @NotNull
-    private Integer smsVerifyCodeType;
+    @ApiModelProperty(value = "验证码类型,默认:0," + SmsConstants.SMS_VERIFY_CODE_TYPE_REMARK, required = true)
+    private Integer smsVerifyCodeType = SmsVerifyCodeTypeEnum.CHARACTER.getCode();
 
     public SmsVerifyCodeTypeEnum getSmsVerifyCodeTypeEnum() {
         return AceEnumUtils.getEnum(SmsVerifyCodeTypeEnum.class, this.smsVerifyCodeType, SmsVerifyCodeTypeEnum.NUMBER);

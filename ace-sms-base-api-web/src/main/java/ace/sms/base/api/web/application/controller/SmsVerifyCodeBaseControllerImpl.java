@@ -1,14 +1,13 @@
 package ace.sms.base.api.web.application.controller;
 
 import ace.fw.model.response.GenericResponseExt;
-import ace.fw.util.GenericResponseExtUtils;
 import ace.sms.base.api.controller.SmsVerifyCodeBaseController;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeCheckEqualBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeGetBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeRemoveBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeSendBiz;
 import ace.sms.define.base.model.VerifyCodeId;
-import ace.sms.define.base.model.request.CheckEqualRequest;
+import ace.sms.define.base.model.request.CheckRequest;
 import ace.sms.define.base.model.request.GetVerifyCodeRequest;
 import ace.sms.define.base.model.request.SendVerifyCodeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,18 +36,17 @@ public class SmsVerifyCodeBaseControllerImpl implements SmsVerifyCodeBaseControl
     private SmsVerifyCodeRemoveBiz smsVerifyCodeRemoveBiz;
 
     @Override
-    public GenericResponseExt<Boolean> send(@Valid SendVerifyCodeRequest request) {
-        smsVerifyCodeSendBiz.execute(request);
-        return GenericResponseExtUtils.buildSuccessWithData(true);
+    public GenericResponseExt<String> send(@Valid SendVerifyCodeRequest request) {
+        return smsVerifyCodeSendBiz.execute(request);
     }
-    
+
     @Override
     public GenericResponseExt<String> get(@Valid GetVerifyCodeRequest request) {
         return smsVerifyCodeGetBiz.execute(request);
     }
 
     @Override
-    public GenericResponseExt<Boolean> checkEqual(CheckEqualRequest request) {
+    public GenericResponseExt<Boolean> check(CheckRequest request) {
         return smsVerifyCodeCheckEqualBiz.execute(request);
     }
 

@@ -5,3 +5,9 @@
 /ace-sms-logic-api/*.iml
 /ace-sms-logic-api-web/*.iml
 /*.iml
+/logs
+/ace-sms-define/target
+/ace-sms-base-api-web/target
+/ace-sms-base-api-client-autoconfigure/target
+/ace-sms-base-api/target
+/.idea
