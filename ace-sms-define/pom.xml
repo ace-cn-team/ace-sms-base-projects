@@ -31,10 +31,7 @@
             <groupId>org.ace</groupId>
             <artifactId>ace-fw</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.ace</groupId>
-            <artifactId>ace-image-verify-code-define</artifactId>
-        </dependency>
+
     </dependencies>
 
 
