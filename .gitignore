@@ -11,3 +11,5 @@
 /ace-sms-base-api-client-autoconfigure/target
 /ace-sms-base-api/target
 /.idea
+/ace-sms-base-define/ace-sms-base-define.iml
+/ace-sms-base-define/target/
