@@ -69,7 +69,7 @@
                         <configuration>
                             <tasks>
                                 <!-- 你将要拷贝的位置 -->
-                                <copy todir="target/jib/">
+                                <copy todir="target/jib/ace/${project.name}">
                                     <!-- 从哪里拷贝 -->
                                     <fileset dir="${project.build.directory}">
                                         <!-- 拷贝内容 -->
@@ -90,11 +90,12 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>2.1.0</version>
                 <configuration>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
                     <!--from节点用来设置镜像的基础镜像，相当于Docerkfile中的FROM关键字-->
                     <from>
                         <!--使用openjdk官方镜像，tag是 -->
-                        <image>openjdk:11.0.6-jre-buster</image>
-
+                        <!--<image>openjdk:11.0.6-jre-buster</image>-->
+                        <image>nexus3.ace.com:8082/openjdk:11.0.6-jre-buster</image>
                     </from>
                     <to>
                         <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
@@ -105,7 +106,7 @@
                         <entrypoint>
                             <arg>/bin/sh</arg>
                             <arg>-c</arg>
-                            <arg>java -Xms128M -Xmx256M -jar /ace/ace-sms-base-api-web/ace-sms-base-api-web.jar</arg>
+                            <arg>java -Xms128M -Xmx256M -jar /ace/${project.name}/${project.name}.jar</arg>
                         </entrypoint>
                     </container>
                     <extraDirectories>
