@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>org.ace</groupId>
-            <artifactId>ace-sms-define</artifactId>
+            <artifactId>ace-sms-base-define</artifactId>
 
         </dependency>
     </dependencies>
