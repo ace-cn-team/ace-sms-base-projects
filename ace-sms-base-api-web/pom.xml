@@ -84,6 +84,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <sendCredentialsOverHttp>true</sendCredentialsOverHttp>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
             <!--使用jib插件-->
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
@@ -101,6 +111,7 @@
                         <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
                         <image>${project.name}:latest</image>
                     </to>
+
                     <!--容器相关的属性-->
                     <container>
                         <entrypoint>
