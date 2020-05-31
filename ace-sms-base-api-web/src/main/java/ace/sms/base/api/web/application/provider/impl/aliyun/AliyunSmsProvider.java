@@ -10,12 +10,9 @@ import ace.sms.base.api.web.application.provider.impl.aliyun.enums.AliyunSmsResp
 import ace.sms.base.api.web.application.provider.impl.aliyun.model.response.AliSmsResponse;
 import ace.sms.base.api.web.application.provider.impl.aliyun.properties.AliyunSmsConfigProperties;
 import ace.sms.base.api.web.application.provider.model.request.SmsSendRequest;
-
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
 import com.aliyuncs.IAcsClient;
-import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
-import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
@@ -58,10 +55,10 @@ public class AliyunSmsProvider implements SmsProvider {
             AliyunSmsResponseEnum responseBiz = AliyunSmsResponseEnum.getEnumByCode(aliSmsResponse.getCode());
             if (AliyunSmsResponseEnum.success.equals(responseBiz) == false) {
                 log.error("sms短信服务发送失败：手机号={}，smsResponse={}", smsSendRequest.getMobile(), aliSmsResponse);
-                throw new BusinessException(SystemCodeEnum.BusinessException.getCode(), aliSmsResponse.getMessage());
+                throw new BusinessException(SystemCodeEnum.BUSINESS_EXCEPTION.getCode(), aliSmsResponse.getMessage());
             }
 
-            result.setCode(SystemCodeEnum.Success.getCode());
+            result.setCode(SystemCodeEnum.SUCCESS.getCode());
             result.setMessage(aliSmsResponse.getMessage());
             result.setData(true);
         } catch (BusinessException ex) {
@@ -70,8 +67,8 @@ public class AliyunSmsProvider implements SmsProvider {
             result.setData(false);
         } catch (Exception ex) {
             log.error("发送短信息出现异常", ex);
-            result.setMessage(SystemCodeEnum.BusinessException.getDesc())
-                    .setCode(SystemCodeEnum.BusinessException.getCode())
+            result.setMessage(SystemCodeEnum.BUSINESS_EXCEPTION.getDesc())
+                    .setCode(SystemCodeEnum.BUSINESS_EXCEPTION.getCode())
                     .setData(false);
         }
         return result;

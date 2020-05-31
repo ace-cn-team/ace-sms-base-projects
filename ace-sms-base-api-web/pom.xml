@@ -23,10 +23,6 @@
         </dependency>
         <dependency>
             <groupId>org.ace</groupId>
-            <artifactId>ace-fw-redisson-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ace</groupId>
             <artifactId>ace-fw-ms-application-autoconfigure</artifactId>
         </dependency>
         <dependency>
@@ -46,14 +42,48 @@
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.taobao</groupId>
-            <artifactId>taobao-sdk-java-20160816</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.4.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 复制生成的jar包到其他位置,方便使用jib插件制作docker image -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-lib-src-webapps</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <!-- 你将要拷贝的位置 -->
+                                <copy todir="target/jib/">
+                                    <!-- 从哪里拷贝 -->
+                                    <fileset dir="${project.build.directory}">
+                                        <!-- 拷贝内容 -->
+                                        <include name="*.jar"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!--使用jib插件-->
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
@@ -71,16 +101,19 @@
                     </to>
                     <!--容器相关的属性-->
                     <container>
-                        <!--jvm内存参数-->
-                        <jvmFlags>
-                            <jvmFlag>-Xms2g</jvmFlag>
-                            <jvmFlag>-Xmx2g</jvmFlag>
-                        </jvmFlags>
-                        <!--要暴露的端口-->
-                        <ports>
-                            <port>20002</port>
-                        </ports>
+                        <entrypoint>
+                            <arg>/bin/sh</arg>
+                            <arg>-c</arg>
+                            <arg>java -Xms128M -Xmx256M -jar /ace/${project.name}/${project.name}.jar
+                            </arg>
+                        </entrypoint>
                     </container>
+                    <extraDirectories>
+                        <paths>
+                            <path>src/main/jib</path>
+                            <path>target/jib</path>
+                        </paths>
+                    </extraDirectories>
                 </configuration>
             </plugin>
         </plugins>
