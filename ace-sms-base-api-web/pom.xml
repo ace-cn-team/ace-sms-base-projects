@@ -94,6 +94,7 @@
                     <from>
                         <!--使用openjdk官方镜像，tag是 -->
                         <image>openjdk:11.0.6-jre-buster</image>
+
                     </from>
                     <to>
                         <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
@@ -104,8 +105,7 @@
                         <entrypoint>
                             <arg>/bin/sh</arg>
                             <arg>-c</arg>
-                            <arg>java -Xms128M -Xmx256M -jar /ace/${project.name}/${project.name}.jar
-                            </arg>
+                            <arg>java -Xms128M -Xmx256M -jar /ace/ace-sms-base-api-web/ace-sms-base-api-web.jar</arg>
                         </entrypoint>
                     </container>
                     <extraDirectories>
