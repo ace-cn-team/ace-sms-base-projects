@@ -1,6 +1,6 @@
 package ace.sms.base.api.web.application.biz.util;
 
-import ace.sms.define.base.model.VerifyCodeId;
+import ace.sms.define.base.model.bo.VerifyCodeId;
 
 /**
  * @author Caspar

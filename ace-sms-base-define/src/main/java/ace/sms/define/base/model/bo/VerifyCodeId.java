@@ -1,4 +1,4 @@
-package ace.sms.define.base.model;
+package ace.sms.define.base.model.bo;
 
 import ace.fw.util.RegPatternUtils;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,22 +27,22 @@ public class VerifyCodeId {
     /**
      * 应用ID
      */
+    @NotBlank(message = "请输入应用ID")
+    @Length(min = 1, max = 36, message = "请输入正确的应用ID")
     @ApiModelProperty(value = "appId", required = true)
-    @NotBlank
-    @Length(min = 1, max = 36)
     private String appId;
     /**
      * 业务ID
      */
     @ApiModelProperty(value = "业务ID,用于区分是什么业务的验证码", required = true)
-    @NotBlank
-    @Length(min = 1, max = 36)
+    @NotBlank(message = "请输入业务ID")
+    @Length(min = 1, max = 36, message = "请输入正确的业务ID")
     private String bizId;
     /**
      * 手机号码
      */
     @ApiModelProperty(value = "手机号码", required = true)
-    @NotBlank
+    @NotBlank(message = "请输入手机号码")
     @Pattern(regexp = RegPatternUtils.REG_MOBILE, message = "请输入正确的手机号码")
     private String mobile;
 }

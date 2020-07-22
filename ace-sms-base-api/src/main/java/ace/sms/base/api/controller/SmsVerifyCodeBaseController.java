@@ -1,6 +1,6 @@
 package ace.sms.base.api.controller;
 
-import ace.sms.base.api.service.SmsVerifyCodeBaseService;
+import ace.sms.base.api.api.SmsVerifyCodeBaseApi;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping(path = "/" + SmsVerifyCodeBaseService.MODULE_RESTFUL_NAME)
+@RequestMapping(path = "/" + SmsVerifyCodeBaseApi.MODULE_RESTFUL_NAME)
 @Validated
-public interface SmsVerifyCodeBaseController extends SmsVerifyCodeBaseService {
+public interface SmsVerifyCodeBaseController extends SmsVerifyCodeBaseApi {
 
 }

@@ -1,6 +1,6 @@
 package ace.sms.define.base.model.request;
 
-import ace.sms.define.base.model.VerifyCodeId;
+import ace.sms.define.base.model.bo.VerifyCodeId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

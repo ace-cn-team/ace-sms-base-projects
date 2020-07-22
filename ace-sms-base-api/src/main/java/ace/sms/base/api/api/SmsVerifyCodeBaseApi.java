@@ -1,8 +1,8 @@
-package ace.sms.base.api.service;
+package ace.sms.base.api.api;
 
 import ace.fw.model.response.GenericResponseExt;
 import ace.sms.define.base.constant.SmsConstants;
-import ace.sms.define.base.model.VerifyCodeId;
+import ace.sms.define.base.model.request.RemoveRequest;
 import ace.sms.define.base.model.request.CheckRequest;
 import ace.sms.define.base.model.request.GetVerifyCodeRequest;
 import ace.sms.define.base.model.request.SendVerifyCodeRequest;
@@ -25,12 +25,10 @@ import javax.validation.Valid;
 @FeignClient(
         name = SmsConstants.BASE_FEIGN_CLIENT_NAME,
         contextId = "smsVerifyCodeBaseService",
-        path = "/" + SmsVerifyCodeBaseService.MODULE_RESTFUL_NAME
+        path = "/" + SmsVerifyCodeBaseApi.MODULE_RESTFUL_NAME
 )
-@Validated
-public interface SmsVerifyCodeBaseService {
+public interface SmsVerifyCodeBaseApi {
     String MODULE_RESTFUL_NAME = "sms-verify-code-base";
-
 
     /**
      * 发送验证码
@@ -38,7 +36,6 @@ public interface SmsVerifyCodeBaseService {
     @ApiOperation(value = "发送验证码")
     @RequestMapping(path = "/send", method = RequestMethod.POST)
     GenericResponseExt<String> send(@Valid @RequestBody SendVerifyCodeRequest request);
-
 
     /**
      * 获取验证码
@@ -69,5 +66,5 @@ public interface SmsVerifyCodeBaseService {
      */
     @ApiOperation(value = "删除验证码")
     @RequestMapping(path = "/remove", method = RequestMethod.POST)
-    GenericResponseExt<Boolean> remove(@Valid @RequestBody VerifyCodeId request);
+    GenericResponseExt<Boolean> remove(@Valid @RequestBody RemoveRequest request);
 }

@@ -7,6 +7,8 @@ import ace.sms.define.base.model.request.SendSmsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @author Caspar
  * @contract 279397942@qq.com
@@ -20,7 +22,7 @@ public class SmsBaseControllerImpl implements SmsBaseController {
     private SmsSendBiz smsSendBiz;
 
     @Override
-    public GenericResponseExt<Boolean> send(SendSmsRequest request) {
+    public GenericResponseExt<Boolean> send(@Valid SendSmsRequest request) {
         return smsSendBiz.execute(request);
     }
 }

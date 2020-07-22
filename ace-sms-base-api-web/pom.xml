@@ -5,7 +5,7 @@
     <parent>
         <artifactId>ace-sms-base-projects</artifactId>
         <groupId>org.ace</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <properties>
@@ -13,6 +13,10 @@
     </properties>
     <artifactId>ace-sms-base-api-web</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>org.ace</groupId>
+            <artifactId>ace-sms-base-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.ace</groupId>
             <artifactId>ace-fw-json</artifactId>
@@ -31,17 +35,23 @@
         </dependency>
         <dependency>
             <groupId>org.ace</groupId>
-            <artifactId>ace-sms-base-api</artifactId>
+            <artifactId>ace-fw-actuator-autoconfigure</artifactId>
+            <version>${ace.fw.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -58,75 +68,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <!-- 复制生成的jar包到其他位置,方便使用jib插件制作docker image -->
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-lib-src-webapps</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <tasks>
-                                <!-- 你将要拷贝的位置 -->
-                                <copy todir="target/jib/ace/${project.name}">
-                                    <!-- 从哪里拷贝 -->
-                                    <fileset dir="${project.build.directory}">
-                                        <!-- 拷贝内容 -->
-                                        <include name="*.jar"/>
-                                    </fileset>
-                                </copy>
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <sendCredentialsOverHttp>true</sendCredentialsOverHttp>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-            <!--使用jib插件-->
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>2.1.0</version>
-                <configuration>
-                    <allowInsecureRegistries>true</allowInsecureRegistries>
-                    <!--from节点用来设置镜像的基础镜像，相当于Docerkfile中的FROM关键字-->
-                    <from>
-                        <!--使用openjdk官方镜像，tag是 -->
-                        <!--<image>openjdk:11.0.6-jre-buster</image>-->
-                        <image>nexus3.ace.com:8082/openjdk:11.0.6-jre-buster</image>
-                    </from>
-                    <to>
-                        <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
-                        <image>${project.name}:latest</image>
-                    </to>
-
-                    <!--容器相关的属性-->
-                    <container>
-                        <entrypoint>
-                            <arg>/bin/sh</arg>
-                            <arg>-c</arg>
-                            <arg>java -Xms128M -Xmx256M -jar /ace/${project.name}/${project.name}.jar</arg>
-                        </entrypoint>
-                    </container>
-                    <extraDirectories>
-                        <paths>
-                            <path>src/main/jib</path>
-                            <path>target/jib</path>
-                        </paths>
-                    </extraDirectories>
-                </configuration>
             </plugin>
         </plugins>
     </build>

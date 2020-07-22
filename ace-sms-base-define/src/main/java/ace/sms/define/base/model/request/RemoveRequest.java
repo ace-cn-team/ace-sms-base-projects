@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetVerifyCodeRequest {
+public class RemoveRequest {
     @ApiModelProperty(value = "验证码Id", required = true)
     @NotNull
     @Valid

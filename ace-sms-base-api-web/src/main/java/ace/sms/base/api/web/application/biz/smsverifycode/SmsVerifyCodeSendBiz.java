@@ -10,7 +10,7 @@ import ace.sms.base.api.web.application.provider.SmsProvider;
 import ace.sms.base.api.web.application.provider.model.request.SmsSendRequest;
 import ace.sms.define.base.enums.SmsTemplateEnum;
 import ace.sms.define.base.enums.SmsVerifyCodeTypeEnum;
-import ace.sms.define.base.model.VerifyCodeId;
+import ace.sms.define.base.model.bo.VerifyCodeId;
 import ace.sms.define.base.model.request.SendVerifyCodeRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RAtomicLong;
@@ -48,7 +48,7 @@ public class SmsVerifyCodeSendBiz {
         //检查每天发送次数
         this.checkLimitCountInDay(request);
 
-        String verifyCode = this.newVerifyCode(request.getSmsVerifyCodeTypeEnum(), request.getVerifyCodeCount());
+        String verifyCode = this.newVerifyCode(request.getSmsVerifyCodeTypeEnum(), request.getVerifyCodeLength());
         // 添加验证码到cache
         this.addCacheVerifyCode(request, verifyCode);
         // 发送短信

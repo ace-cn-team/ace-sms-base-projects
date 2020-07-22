@@ -6,7 +6,7 @@ import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeCheckEqua
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeGetBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeRemoveBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeSendBiz;
-import ace.sms.define.base.model.VerifyCodeId;
+import ace.sms.define.base.model.request.RemoveRequest;
 import ace.sms.define.base.model.request.CheckRequest;
 import ace.sms.define.base.model.request.GetVerifyCodeRequest;
 import ace.sms.define.base.model.request.SendVerifyCodeRequest;
@@ -51,7 +51,7 @@ public class SmsVerifyCodeBaseControllerImpl implements SmsVerifyCodeBaseControl
     }
 
     @Override
-    public GenericResponseExt<Boolean> remove(VerifyCodeId request) {
+    public GenericResponseExt<Boolean> remove(RemoveRequest request) {
         return smsVerifyCodeRemoveBiz.execute(request);
     }
 }
