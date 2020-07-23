@@ -1,7 +1,7 @@
 package ace.sms.base.api.web.application.controller;
 
 import ace.fw.model.response.GenericResponseExt;
-import ace.sms.base.api.controller.SmsVerifyCodeBaseController;
+import ace.sms.base.api.web.controller.SmsVerifyCodeBaseController;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeCheckEqualBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeGetBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeRemoveBiz;

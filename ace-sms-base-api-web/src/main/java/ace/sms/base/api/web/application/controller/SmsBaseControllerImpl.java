@@ -1,7 +1,7 @@
 package ace.sms.base.api.web.application.controller;
 
 import ace.fw.model.response.GenericResponseExt;
-import ace.sms.base.api.controller.SmsBaseController;
+import ace.sms.base.api.web.controller.SmsBaseController;
 import ace.sms.base.api.web.application.biz.sms.SmsSendBiz;
 import ace.sms.define.base.model.request.SendSmsRequest;
 import org.springframework.beans.factory.annotation.Autowired;

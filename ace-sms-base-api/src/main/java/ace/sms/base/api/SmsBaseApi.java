@@ -1,11 +1,10 @@
-package ace.sms.base.api.api;
+package ace.sms.base.api;
 
 import ace.fw.model.response.GenericResponseExt;
 import ace.sms.define.base.constant.SmsConstants;
 import ace.sms.define.base.model.request.SendSmsRequest;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +19,7 @@ import javax.validation.Valid;
  */
 @FeignClient(
         name = SmsConstants.BASE_FEIGN_CLIENT_NAME,
-        contextId = "smsService",
+        contextId = "smsBaseApi",
         path = "/" + SmsBaseApi.MODULE_RESTFUL_NAME
 )
 public interface SmsBaseApi {

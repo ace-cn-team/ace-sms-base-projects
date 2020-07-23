@@ -1,6 +1,6 @@
 package ace.sms.base.api.client.autoconfigure;
 
-import ace.sms.base.api.controller.SmsVerifyCodeBaseController;
+import ace.sms.base.api.web.controller.SmsVerifyCodeBaseController;
 import ace.sms.define.base.constant.SmsConstants;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

@@ -1,6 +1,6 @@
-package ace.sms.base.api.controller;
+package ace.sms.base.api.web.controller;
 
-import ace.sms.base.api.api.SmsBaseApi;
+import ace.sms.base.api.SmsBaseApi;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
