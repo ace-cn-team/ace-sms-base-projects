@@ -14,7 +14,7 @@ public interface SmsConstants {
     /**
      * base api layer openfeign微服务配置包路径
      */
-    String BASE_FEIGN_CLIENT_SERVICE_PACKAGE = "ace.sms.base.api.api";
+    String BASE_FEIGN_CLIENT_SERVICE_PACKAGE = "ace.sms.base.api";
     /**
      * base api layer openfeign微服务自动配置
      */

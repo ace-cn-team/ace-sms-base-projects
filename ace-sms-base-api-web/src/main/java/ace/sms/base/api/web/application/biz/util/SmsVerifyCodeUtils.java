@@ -11,8 +11,8 @@ import ace.sms.define.base.model.bo.VerifyCodeId;
 public class SmsVerifyCodeUtils {
     public static String getCacheKey(VerifyCodeId verifyCodeId) {
         return String.format("ace:sms:%s:%s:%s",
-                verifyCodeId.getAppId(),
-                verifyCodeId.getBizId(),
+                verifyCodeId.getAppID(),
+                verifyCodeId.getBizType(),
                 verifyCodeId.getMobile());
     }
 }

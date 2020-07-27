@@ -1,5 +1,6 @@
 package ace.sms.define.base.model.request;
 
+import ace.common.base.define.model.constraint.MobileConstraint;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,13 +24,13 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SendSmsRequest {
-    @ApiModelProperty(value = "手机号码", required = true)
-    @NotBlank(message = "请输入手机号码")
+    @MobileConstraint
+    @ApiModelProperty(value = MobileConstraint.FIELD_NAME, required = true)
     private String mobile;
-    @ApiModelProperty(value = "短信模板ID", required = true)
     @NotBlank(message = "请输入短信模板ID")
+    @ApiModelProperty(value = "短信模板ID", required = true)
     private String templateId;
-    @ApiModelProperty(value = "短信模板内容", required = true)
     @Size(min = 1, message = "请输入短信模板内容")
+    @ApiModelProperty(value = "短信模板内容", required = true)
     private Map<String, String> templateContent;
 }

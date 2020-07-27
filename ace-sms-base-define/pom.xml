@@ -5,12 +5,20 @@
     <parent>
         <artifactId>ace-sms-base-projects</artifactId>
         <groupId>org.ace</groupId>
-        <version>1.0.0.6</version>
+        <version>1.0.0.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ace-sms-base-define</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>org.ace</groupId>
+            <artifactId>ace-fw</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ace</groupId>
+            <artifactId>ace-common-base-define</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -27,10 +35,7 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.ace</groupId>
-            <artifactId>ace-fw</artifactId>
-        </dependency>
+
     </dependencies>
 
 

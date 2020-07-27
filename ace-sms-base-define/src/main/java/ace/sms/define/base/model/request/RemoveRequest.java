@@ -1,5 +1,6 @@
 package ace.sms.define.base.model.request;
 
+import ace.sms.define.base.constraint.SmsVerifyCodeIdConstraint;
 import ace.sms.define.base.model.bo.VerifyCodeId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -23,8 +24,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RemoveRequest {
-    @ApiModelProperty(value = "验证码Id", required = true)
-    @NotNull
     @Valid
+    @SmsVerifyCodeIdConstraint
+    @ApiModelProperty(value = SmsVerifyCodeIdConstraint.FIELD_NAME, required = true)
     private VerifyCodeId verifyCodeId;
 }

@@ -1,5 +1,7 @@
 package ace.sms.define.base.model.request;
 
+import ace.sms.define.base.constraint.SmsVerifyCodeConstraint;
+import ace.sms.define.base.constraint.SmsVerifyCodeIdConstraint;
 import ace.sms.define.base.model.bo.VerifyCodeId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -25,13 +27,12 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckRequest {
-    @ApiModelProperty(value = "验证码Id", required = true)
-    @NotNull
     @Valid
+    @SmsVerifyCodeIdConstraint
+    @ApiModelProperty(value = SmsVerifyCodeIdConstraint.FIELD_NAME, required = true)
     private VerifyCodeId verifyCodeId;
-    @ApiModelProperty(value = "验证码", required = true)
-    @NotBlank
-    @Length(min = 4, max = 8)
+    @SmsVerifyCodeConstraint
+    @ApiModelProperty(value = SmsVerifyCodeConstraint.FIELD_NAME, required = true)
     private String verifyCode;
 
 }
