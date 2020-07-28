@@ -31,7 +31,7 @@ public class VerifyCodeId {
      */
     @AppIdConstraint
     @ApiModelProperty(value = AppIdConstraint.FIELD_NAME, required = true)
-    private String appID;
+    private String appId;
     /**
      * 业务类型
      */
