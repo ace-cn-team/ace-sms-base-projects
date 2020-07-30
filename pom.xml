@@ -5,16 +5,14 @@
     <parent>
         <artifactId>ace-projects</artifactId>
         <groupId>org.ace</groupId>
-        <version>1.0.0.3</version>
+        <version>1.0.0.10</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <artifactId>ace-sms-base-projects</artifactId>
-    <version>1.0.0.10</version>
+    <version>1.0.0.11</version>
     <properties>
-        <!-- 基础架构模块 -->
-        <ace.fw.version>1.0.0.5</ace.fw.version>
-        <ace.common.base.version>1.0.0.5</ace.common.base.version>
+        <ace.common.base.version>1.0.0.6</ace.common.base.version>
     </properties>
     <modules>
         <module>ace-sms-base-api</module>
@@ -25,6 +23,20 @@
     </modules>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.ace</groupId>
+                <artifactId>ace-dependency-management</artifactId>
+                <version>1.0.0.10</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.ace</groupId>
+                <artifactId>ace-framework-projects</artifactId>
+                <version>1.0.0.11</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>org.ace</groupId>
                 <artifactId>ace-sms-base-define</artifactId>
@@ -49,52 +61,6 @@
                 <groupId>org.ace</groupId>
                 <artifactId>ace-common-base-define</artifactId>
                 <version>${ace.common.base.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-data</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-log4j2-autoconfigure</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-json</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-json-fastjson-autoconfigure</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-redisson-autoconfigure</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-ms-application</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-ms-application-autoconfigure</artifactId>
-                <version>${ace.fw.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ace</groupId>
-                <artifactId>ace-fw-ms-discovery-server-autoconfigure</artifactId>
-                <version>${ace.fw.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
