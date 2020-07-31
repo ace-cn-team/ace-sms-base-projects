@@ -2,7 +2,7 @@ package ace.sms.base.api.web.application.controller;
 
 import ace.fw.model.response.GenericResponseExt;
 import ace.sms.base.api.web.controller.SmsVerifyCodeBaseController;
-import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeCheckEqualBiz;
+import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeCheckBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeGetBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeRemoveBiz;
 import ace.sms.base.api.web.application.biz.smsverifycode.SmsVerifyCodeSendBiz;
@@ -31,7 +31,7 @@ public class SmsVerifyCodeBaseControllerImpl implements SmsVerifyCodeBaseControl
     @Autowired
     private SmsVerifyCodeGetBiz smsVerifyCodeGetBiz;
     @Autowired
-    private SmsVerifyCodeCheckEqualBiz smsVerifyCodeCheckEqualBiz;
+    private SmsVerifyCodeCheckBiz smsVerifyCodeCheckBiz;
     @Autowired
     private SmsVerifyCodeRemoveBiz smsVerifyCodeRemoveBiz;
 
@@ -47,7 +47,7 @@ public class SmsVerifyCodeBaseControllerImpl implements SmsVerifyCodeBaseControl
 
     @Override
     public GenericResponseExt<Boolean> check(CheckRequest request) {
-        return smsVerifyCodeCheckEqualBiz.execute(request);
+        return smsVerifyCodeCheckBiz.execute(request);
     }
 
     @Override

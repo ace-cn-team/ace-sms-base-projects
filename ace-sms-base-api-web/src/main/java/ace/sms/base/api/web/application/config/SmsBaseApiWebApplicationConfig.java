@@ -1,6 +1,6 @@
 package ace.sms.base.api.web.application.config;
 
-import ace.sms.base.api.web.application.propreties.SmsVerifyCodeConfigProperties;
+import ace.sms.base.api.web.application.property.SmsVerifyCodeProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @create 2020/1/14 15:57
  * @description
  */
-@EnableConfigurationProperties({SmsVerifyCodeConfigProperties.class})
+@EnableConfigurationProperties({SmsVerifyCodeProperties.class})
 @Configuration
 public class SmsBaseApiWebApplicationConfig {
 }

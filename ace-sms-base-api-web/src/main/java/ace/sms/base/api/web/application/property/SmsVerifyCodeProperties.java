@@ -1,8 +1,7 @@
-package ace.sms.base.api.web.application.propreties;
+package ace.sms.base.api.web.application.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author 陈志杭
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @ConfigurationProperties(prefix = "ace.sms.verify-code")
-public class SmsVerifyCodeConfigProperties {
+public class SmsVerifyCodeProperties {
 
     /**
      * 验证码过期时间

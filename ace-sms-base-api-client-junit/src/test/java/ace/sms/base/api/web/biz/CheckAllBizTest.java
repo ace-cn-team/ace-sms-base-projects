@@ -38,7 +38,8 @@ public class CheckAllBizTest {
     private SmsVerifyCodeBaseApi smsVerifyCodeBaseApi;
 
     private final static String TEST_MOBILE = "15099975787";
-
+    private final static String TEST_APP_ID = "test_app_id";
+    private final static String TEST_BIZ_TYPE = "test_biz_type";
 
     /**
      * 验证全部公开的逻辑接口
@@ -91,5 +92,19 @@ public class CheckAllBizTest {
 
         Assert.isTrue(removeResult);
 
+    }
+
+    @Test
+    public void test_0002_checkSystemVerifyCode() {
+        Boolean result = smsVerifyCodeBaseApi.check(CheckRequest.builder()
+                .verifyCode("888888")
+                .verifyCodeId(VerifyCodeId.builder()
+                        .mobile(TEST_MOBILE)
+                        .appId(TEST_APP_ID)
+                        .bizType(TEST_BIZ_TYPE)
+                        .build())
+                .build()
+        ).check();
+        org.junit.Assert.assertTrue(result);
     }
 }

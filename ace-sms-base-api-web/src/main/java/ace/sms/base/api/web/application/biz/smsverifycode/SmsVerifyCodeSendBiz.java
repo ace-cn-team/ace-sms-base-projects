@@ -5,7 +5,7 @@ import ace.fw.model.response.GenericResponseExt;
 import ace.fw.util.AceRandomStringUtils;
 import ace.fw.util.GenericResponseExtUtils;
 import ace.sms.base.api.web.application.biz.util.SmsVerifyCodeUtils;
-import ace.sms.base.api.web.application.propreties.SmsVerifyCodeConfigProperties;
+import ace.sms.base.api.web.application.property.SmsVerifyCodeProperties;
 import ace.sms.base.api.web.application.provider.SmsProvider;
 import ace.sms.base.api.web.application.provider.model.request.SmsSendRequest;
 import ace.sms.define.base.enums.SmsTemplateEnum;
@@ -40,7 +40,7 @@ public class SmsVerifyCodeSendBiz {
     @Autowired
     private RedissonClient redissonClient;
     @Autowired
-    private SmsVerifyCodeConfigProperties smsVerifyCodeConfigProperties;
+    private SmsVerifyCodeProperties smsVerifyCodeProperties;
 
     public GenericResponseExt<String> execute(@Valid SendVerifyCodeRequest request) {
         //检查发送频率
@@ -77,7 +77,7 @@ public class SmsVerifyCodeSendBiz {
     private void addCacheVerifyCode(SendVerifyCodeRequest request, String verifyCode) {
         String cacheKey = this.getCacheKey(request.getVerifyCodeId());
         RBucket<String> verifyCodeRBucket = redissonClient.getBucket(cacheKey);
-        verifyCodeRBucket.set(verifyCode, smsVerifyCodeConfigProperties.getVerifyCodeExpireInSeconds(), TimeUnit.SECONDS);
+        verifyCodeRBucket.set(verifyCode, smsVerifyCodeProperties.getVerifyCodeExpireInSeconds(), TimeUnit.SECONDS);
     }
 
     private String getCacheKeyForLimitCountInDay(SendVerifyCodeRequest request) {
@@ -97,8 +97,8 @@ public class SmsVerifyCodeSendBiz {
         String cacheKey = this.getCacheKeyForLimitCountInDay(request);
         RAtomicLong sendedCountRAtomicLong = redissonClient.getAtomicLong(cacheKey);
         long sendedCount = sendedCountRAtomicLong.get();
-        if (sendedCount >= smsVerifyCodeConfigProperties.getLimitPreMobileMaxCountOfDay()) {
-            String msg = String.format("每天只能发送%s条短信验证码", smsVerifyCodeConfigProperties.getLimitPreMobileMaxCountOfDay());
+        if (sendedCount >= smsVerifyCodeProperties.getLimitPreMobileMaxCountOfDay()) {
+            String msg = String.format("每天只能发送%s条短信验证码", smsVerifyCodeProperties.getLimitPreMobileMaxCountOfDay());
             throw new BusinessException(msg);
         }
     }
@@ -111,7 +111,7 @@ public class SmsVerifyCodeSendBiz {
     private void addSendIntervalLock(SendVerifyCodeRequest request) {
         String cacheKey = this.getCacheKeySendInterval(request);
         RBucket<Boolean> rIntervalLock = redissonClient.getBucket(cacheKey);
-        rIntervalLock.trySet(true, smsVerifyCodeConfigProperties.getLimitSendIntervalInSeconds(), TimeUnit.SECONDS);
+        rIntervalLock.trySet(true, smsVerifyCodeProperties.getLimitSendIntervalInSeconds(), TimeUnit.SECONDS);
     }
 
     private void checkLimitSendInterval(SendVerifyCodeRequest request) {
@@ -119,7 +119,7 @@ public class SmsVerifyCodeSendBiz {
         RBucket<Boolean> rIntervalLock = redissonClient.getBucket(cacheKey);
         Boolean rIntervalLockValue = rIntervalLock.get();
         if (rIntervalLockValue != null) {
-            throw new BusinessException(String.format("验证码发送太频繁，请至少间隔%s秒", smsVerifyCodeConfigProperties.getLimitSendIntervalInSeconds()));
+            throw new BusinessException(String.format("验证码发送太频繁，请至少间隔%s秒", smsVerifyCodeProperties.getLimitSendIntervalInSeconds()));
         }
 
 
